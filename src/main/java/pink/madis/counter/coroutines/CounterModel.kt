@@ -15,9 +15,9 @@ class CounterModel @Inject constructor() : MviLite.Model, LifecycleObserver {
     get() = modelLoop()
   override val inputs = Channel<MviLite.Input>()
 
-  private var counter = 1
 
   private fun modelLoop() = flow {
+    var counter = 1
     while (true) {
       emit(Output.ViewState.Configure(counter))
       when (inputs.receive()) {
