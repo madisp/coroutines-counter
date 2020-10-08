@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="counter">Counter</string>
+  <string name="stay_positive">Cannot go below 1 second</string>
+  <string name="less">Less?</string>
+  <string name="more">More!</string>
+
+  <plurals name="sleep">
+    <item quantity="one">Sleep for %d second</item>
+    <item quantity="other">Sleep for %d seconds</item>
+  </plurals>
+
+  <plurals name="sleeping">
+    <item quantity="one">Sleeping for %d second</item>
+    <item quantity="other">Sleeping for %d seconds</item>
+  </plurals>
+</resources>
