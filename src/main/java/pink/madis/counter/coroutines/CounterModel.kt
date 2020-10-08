@@ -1,6 +1,5 @@
 package pink.madis.counter.coroutines
 
-import androidx.lifecycle.LifecycleObserver
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -11,7 +10,7 @@ import pink.madis.counter.coroutines.MviLite.Output
 import javax.inject.Inject
 
 @ActivityScoped
-class CounterModel @Inject constructor() : MviLite.Model, LifecycleObserver {
+class CounterModel @Inject constructor() : MviLite.Model {
   override val outputs: Flow<Output>
     get() = modelLoop()
   override val inputs = Channel<Input>()
