@@ -6,6 +6,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import pink.madis.counter.coroutines.MviLite.Input
 import pink.madis.counter.coroutines.MviLite.Output
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ import javax.inject.Inject
 class CounterModel @Inject constructor() : MviLite.Model, LifecycleObserver {
   override val outputs: Flow<Output>
     get() = modelLoop()
-  override val inputs = Channel<MviLite.Input>()
+  override val inputs = Channel<Input>()
 
 
   private fun modelLoop() = flow {
@@ -21,11 +22,11 @@ class CounterModel @Inject constructor() : MviLite.Model, LifecycleObserver {
     while (true) {
       emit(Output.ViewState.Configure(counter))
       when (inputs.receive()) {
-        MviLite.Input.INCREMENT -> {
+        Input.INCREMENT -> {
           emit(Output.ViewState.Configure(++counter))
         }
 
-        MviLite.Input.DECREMENT -> {
+        Input.DECREMENT -> {
           if (counter > 1) {
             emit(Output.ViewState.Configure(--counter))
           } else {
@@ -33,7 +34,7 @@ class CounterModel @Inject constructor() : MviLite.Model, LifecycleObserver {
           }
         }
 
-        MviLite.Input.SLEEP -> {
+        Input.SLEEP -> {
           for (countdown in counter downTo 1) {
             emit(Output.ViewState.Sleeping(countdown))
             delay(1_000L)
